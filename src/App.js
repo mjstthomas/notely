@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import { Route } from 'react-router-dom'
+import Header from './Header'
+import store from './store'
+import Folders from './Folders/Folders'
+import Notes from './Notes/Notes'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    folders: store.folders,
+    notes: store.notes
+  }
+  render(){
+    const folders = this.state.folders.map(folder => <Folders id={folder.id} name={folder.name} />)
+    const notes = this.state.notes.map(note => <Notes id={note.id} folderId={note.folderId} name={note.name} content={note.content} />)
+    return (
+      <div className="App">
+        <header>
+          <Header />
+        </header>
+        <section>
+        <nav>
+          {folders}
+        </nav>
+        <main>
+          {notes}
+        </main>
+        </section>
+      </div>
+    );
+  }
 }
 
 export default App;

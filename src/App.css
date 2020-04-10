@@ -1,11 +1,9 @@
 .App {
-  text-align: center;
+  display: block;
+  /*text-align: center;*/
+  border: 1px solid purple;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -26,6 +24,50 @@
 
 .App-link {
   color: #61dafb;
+}
+header{
+  width: 100%;
+  height: 100px;
+  color: white;
+  background: black;
+}
+section{
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+nav{
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 25%;
+  height: 600px;
+  padding: 0;
+  margin: 0;
+  background-color: orange;
+}
+main{
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 600px;
+  margin: 0;
+  background-color: gray;
+}
+.folders{
+  width: 60%;
+  margin: 10px 20%;
+  border: 1px solid black;
+
+}
+button{
+  width: 100%;
+}
+button:hover{
+  background-color: green;
 }
 
 @keyframes App-logo-spin {
