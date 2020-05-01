@@ -27,12 +27,12 @@
 }
 header{
   width: 100%;
-  height: 100px;
+  height: 60px;
   text-decoration: none;
   text-align: center;
-  padding-top: 25px;
+  padding-top: 5px;
   color: white;
-  background: black;
+  background: #343B40;
 }
 a{
   text-decoration: none;
@@ -50,26 +50,36 @@ nav{
   top: 0;
   display: inline-block;
   box-sizing: border-box;
-  width: 25%;
+  width: 20%;
   height: 600px;
   padding: 0;
   margin: 0;
-  background-color: orange;
+  background-color: #FF863A;
 }
 main{
   position: absolute;
-  left: 25%;
+  left: 20%;
   display: inline-block;
   box-sizing: border-box;
-  width: 75%;
+  width: 80%;
   height: 600px;
   margin: 0;
-  background-color: gray;
+  background-color: #FF863A;
 }
 .folders{
-  width: 60%;
-  margin: 10px 20%;
-  border: 1px solid black;
+  box-sizing: none;
+  width: 100%;
+  height: 50px;
+  margin: 0px;
+  background-color: orange;
+  border-top: .5px solid black;
+  border-bottom: .5px solid black;
+  border-left: 10px solid pink;
+  border-right: 10px solid #343B40;
+  padding-left: 5px solid gray;
+  padding-right: 10px solid black;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 
 }
 ul{
@@ -80,15 +90,20 @@ li{
   list-style: none;
   text-decoration: none;
 }
-button:hover{
+.folders:hover{
   background-color: green;
 }
-button:active{
-  background-color: blue;
+.folders:active{
+  background-color: gray;
 }
 .note{
   width: 100%;
-  height: 25px;
+  height: 30px;
+  background-color: #FFF795;
+  border-top: 1px solid #87FFEF;
+  border-bottom: 1px solid #87FFEF;
+  border-right: none;
+  border-left: none;
 }
 
 

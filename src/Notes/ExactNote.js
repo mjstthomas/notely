@@ -16,6 +16,7 @@ class ExactNote extends React.Component{
 			.then(() => this.context.deleteNote())
 			.catch(error => console.log(error))
 		}
+
 	render(props){
 		const exactNote = this.context.notes.find(note => note.id === this.props.match.params.noteId)
 		return(
