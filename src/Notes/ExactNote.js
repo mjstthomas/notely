@@ -20,7 +20,7 @@ class ExactNote extends React.Component{
 	render(props){
 		const exactNote = this.context.notes.find(note => note.id === this.props.match.params.noteId)
 		return(
-			<div>
+			<div className="exactNote">
 				<h2>{exactNote.name}</h2>
 				<p>{exactNote.content}</p>
 				<Link to='/' ><button onClick={() => this.context.deleteNote(this.props.match.params.noteId)}>Delete</button></Link>
