@@ -40,11 +40,11 @@ class AddNotes extends React.Component{
 		return(
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<label for="noteName">New Note Name:</label>
+					<label htmlFor="noteName">New Note Name:</label>
 					<br/>
 					<input type="text" onChange={this.handleChange} className="noteName" name="name" required/>
 					<br/>
-					<label for="noteContent" >Note info:</label>
+					<label htmlFor="noteContent" >Note content:</label>
 					<br/>
 					<textarea name="content" onChange={this.handleChange} cols="100" rows="10" required></textarea>
 					<br/>
