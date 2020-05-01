@@ -8,39 +8,72 @@ import GoBack from './Folders/GoBack'
 import Main from './Notes/Main'
 import Notes from './Notes/Notes'
 import ExactNote from './Notes/ExactNote'
+import AddNotes from './Notes/AddNotes'
+import AddFolder from './Folders/AddFolder'
+import AppContext from './AppContext'
 
 class App extends React.Component {
   state = {
-    folders: store.folders,
-    notes: store.notes
+    folders: [],
+    notes: []
   }
+
+
+  componentDidMount(){
+      fetch('http://localhost:9090/folders')
+        .then(response => response.json())
+        .then(data => this.setState({folders: data}))
+      fetch('http://localhost:9090/notes')
+        .then(response => response.json())
+        .then(data => this.setState({notes: data}))
+    }
+
+  deleteNote = noteId => {
+    const newNotes= this.state.notes.filter(note => noteId !== note.id)
+    this.setState({notes: newNotes})
+  }
+  handleFolderSubmit = event =>{
+    fetch('http://localhose:9090/folders')
+      .then(response => response.json())
+      .then(data => this.setState({folders: data}))
+  }
+  handleNoteSubmit = event => {
+      fetch('http://localhost:9090/notes')
+        .then(response => response.json())
+        .then(data => this.setState({notes: data}))
+  }
+
   render(){
+    const appValue = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+      deleteNote: this.deleteNote,
+      handleNoteSubmit: this.handleNoteSubmit,
+      handleFolderSubmit: this.handleFolderSubmit
+    }
     return (
-      <div className="App">
-        <header>
-          <Header />
-        </header>
-        <section>
-        <nav>
-          <Route path="/" exact render={() => <Folders folders={this.state.folders} />} />
-          <Route path='/folders/:folderId' render= {(props) => <Folders folders={this.state.folders} selected={props.match.params.folderId} />} />
-          <Route path='/notes/:noteId' render={() => <GoBack />} />
-        </nav>
-        <main>
-          <Route path='/' exact render={() => <Main notes={this.state.notes}/> } />
-          <Route path='/folders/:folderId' render={(props) => { 
-              return (
-                <Main notes={this.state.notes.filter(note => note.folderId === props.match.params.folderId)}/>
-              )}}
-          />
-          <Route path='/notes/:noteId' render={(props) => {
-              const exactNote = this.state.notes.find(note => note.id === props.match.params.noteId)
-            return (
-            <ExactNote {...exactNote}/>)
-          }}/>
-        </main>
-        </section>
-      </div>
+      <AppContext.Provider value={appValue}>
+        <div className="App">
+          <header>
+            <Header />
+          </header>
+          <section>
+          <nav>
+            <Route path="/" exact component={Folders} />
+            <Route path='/folders/:folderId' component={Folders} />
+            <Route path='/notes/:noteId' component={GoBack} />
+            <Route path='/folders/:folderId/addNotes' component={GoBack} />
+          </nav>
+          <main>
+            <Route path='/' exact component={Main} />
+            <Route path='/folders/:folderId' component={Main}/>
+            <Route path='/notes/:noteId' component={ExactNote}/>
+            <Route path='/folders/:folderId/addNotes' component={AddNotes} />
+            <Route path='/folders/:folderId/addfolder' component={AddFolder}/>
+          </main>
+          </section>
+        </div>
+      </AppContext.Provider>
     );
   }
 }

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the UI as expected 1`] = `
+<div
+  className="notes"
+>
+  <a
+    href="/Notes/1"
+    onClick={[Function]}
+  >
+    <button
+      className="note"
+    >
+      dolphins
+    </button>
+  </a>
+</div>
+`;
