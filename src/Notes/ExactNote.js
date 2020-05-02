@@ -1,6 +1,7 @@
 import React from 'react'
 import AppContext from '../AppContext'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class ExactNote extends React.Component{
 	static contextType = AppContext
@@ -28,4 +29,15 @@ class ExactNote extends React.Component{
 		)
 	}
 }
+ExactNote.propTypes = {
+	match: PropTypes.shape({
+		params: PropTypes.shape({
+			noteId: PropTypes.string
+		}),
+		path: PropTypes.string,
+		url: PropTypes.string,
+		isExact: PropTypes.bool
+	})
+}
+
 export default ExactNote

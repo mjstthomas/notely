@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Notes from './Notes'
 import AppContext from '../AppContext'
 import NoteError from './NoteError'
+import PropTypes from 'prop-types'
 
 class Main extends React.Component{
 	static contextType = AppContext
@@ -19,5 +20,15 @@ class Main extends React.Component{
 				</div>
 			</NoteError>
 			)}
+}
+Main.propTypes = {
+	match: PropTypes.shape({
+		params: PropTypes.shape({
+			folderId: PropTypes.string
+		}),
+		path: PropTypes.string,
+		url: PropTypes.string,
+		isExact: PropTypes.bool
+	})
 }
 export default Main
