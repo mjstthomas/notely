@@ -1,30 +1,69 @@
 import React from 'react'
 import AppContext from '../AppContext'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import PropTypes, { exact } from 'prop-types'
+
 
 class ExactNote extends React.Component{
+	state = {
+		note_name: "",
+		content: ""
+	}
 	static contextType = AppContext
+
+	fillState = () =>{
+		const exactNote = this.context.notes.find(note => note.id == this.props.match.params.noteId)
+		this.setState({
+			note_name: exactNote.noteName,
+			content: exactNote.content
+		})
+	}
+
+	handleClick = event =>{
+		const {name, value} = event.target
+		this.setState({[name]: value})
+	}
+
+	handleSubmit=event=>{
+		event.preventDefault()
+		const {note_name, content} = this.state
+		const updatedNote ={note_name, content}
+		const noteId = this.props.match.params.noteId
+
+		fetch(`http://localhost:8000/api/notes/${noteId}`, {
+			method: 'POST',
+			body: JSON.stringify(updatedNote),
+			headers: {'content-type': 'application/json'},
+		})
+		setTimeout(this.props.history.push('/'), 3000)
+	}
 
 	handleDelete = event => {
 		event.preventDefault()
 		const noteId = this.props.match.params.noteId
-		fetch(`http://localhost:3000/notes/${noteId}`, {
+		fetch(`http://localhost:8000/api/notes/${noteId}`, {
       		method: 'DELETE',
       		headers: {'content-type': 'application/json'},
     		})
-			.then(response => response.json())
-			.then(() => this.context.deleteNote())
 			.catch(error => console.log(error))
+			setTimeout(this.props.history.push('/'), 3000)
 		}
 
+	componentWillMount(){
+		this.fillState()
+	}
+
 	render(props){
-		const exactNote = this.context.notes.find(note => note.id === this.props.match.params.noteId)
 		return(
 			<div className="exactNote">
-				<h2>{exactNote.name}</h2>
-				<p>{exactNote.content}</p>
-				<Link to='/' ><button onClick={() => this.context.deleteNote(this.props.match.params.noteId)}>Delete</button></Link>
+				<form onSubmit={this.handleSubmit}>
+					<label htmlFor="note_name">Note Title</label><br/>
+					<input type="text" name="note_name" value={this.state.note_name} onChange={this.handleClick}/><br/>
+					<label htmlFor="content">Content:</label><br/>
+					<textarea className="content-container" name="content" value={this.state.content} onChange={this.handleClick}/><br/>
+					<button className="editBtn">Edit</button>
+				</form>
+				<button onClick={this.handleDelete}>Delete</button>
 			</div>
 		)
 	}

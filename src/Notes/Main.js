@@ -8,15 +8,15 @@ import PropTypes from 'prop-types'
 class Main extends React.Component{
 	static contextType = AppContext
 	render(props){
-		const notes = this.props.match.params.folderId ? this.context.notes.filter(note => note.folderId === this.props.match.params.folderId) : this.context.notes
-		const newNotes = notes.map(note =>  <Notes modified={note.modified} key={note.id} id={note.id } name={note.name} />)
+		const notes = this.props.match.params.folderId ? this.context.notes.filter(note => note.folderId == this.props.match.params.folderId) : this.context.notes
+		const newNotes = notes.map(note =>  <Notes modified={note.modified} key={note.id} id={note.id } name={note.noteName} />)
 		return(
 			<NoteError>
 				<div>
-					<ul>
+					<ul className="noteContainer">
 						{newNotes}
 					</ul>
-					<Link to={`/folders/${this.props.match.params.folderId}/addNotes`}><button>Add Note</button></Link>
+					<Link to={`/folders/${this.props.match.params.folderId}/addNotes`}><button className="addBtn">+</button></Link>
 				</div>
 			</NoteError>
 			)}

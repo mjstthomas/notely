@@ -8,11 +8,9 @@ const newDate = new Date()
 
 class AddNotes extends React.Component{
 	state = {
-		"folderId": this.props.match.params.folderId,
-		"id": Math.ceil(Math.random()*10000000).toString(),
-		"modified": newDate,
-		"name": '',
-		"content": ''
+		folderid: this.props.match.params.folderId,
+		noteName: '',
+		content: ''
 	}
 	static contextType = AppContext
 
@@ -24,12 +22,19 @@ class AddNotes extends React.Component{
 	}
 	handleSubmit=event=>{
 		event.preventDefault()
-		fetch('http://localhost:9090/notes', {
+		const newNote = {
+			folderid: Number(this.state.folderid),
+			noteName: this.state.noteName,
+			content: this.state.content
+		}
+		fetch('http://localhost:8000/api/notes', {
 			method: 'POST',
-			body: JSON.stringify(this.state),
+			body: JSON.stringify(newNote),
 			headers: {'content-type': 'application/json'}
 		})
 		.then(this.context.handleNoteSubmit())
+		this.props.history.push('/')
+		
 	}
 	handleClick=()=>{
 		console.log(this.state)
@@ -42,7 +47,7 @@ class AddNotes extends React.Component{
 				<form onSubmit={this.handleSubmit}>
 					<label htmlFor="noteName">New Note Name:</label>
 					<br/>
-					<input type="text" onChange={this.handleChange} className="noteName" name="name" required/>
+					<input type="text" onChange={this.handleChange} className="noteName" name="noteName" required/>
 					<br/>
 					<label htmlFor="noteContent" >Note content:</label>
 					<br/>

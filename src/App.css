@@ -1,9 +1,9 @@
 .App {
-  display: block;
-  /*text-align: center;*/
-  border: 1px solid purple;
+  min-height: 100px;
 }
-
+body{
+  background-color: #343B40;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -11,61 +11,74 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 header{
   width: 100%;
-  height: 60px;
+  height: 150px;
   text-decoration: none;
   text-align: center;
-  padding-top: 5px;
+  padding: .5em;
   color: white;
   background: #343B40;
+  border-bottom: 10px solid white;
+}
+h1{
+  line-height: 1em;
+  font-size: 4em;
 }
 a{
   text-decoration: none;
   color: white;
 }
 section{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
   position: relative;
   box-sizing: border-box;
   width: 100%;
+  min-height: 100px;
   margin: 0;
   padding: 0;
 }
 nav{
-  position: absolute;
   top: 0;
   display: inline-block;
   box-sizing: border-box;
-  width: 20%;
+  width: 100%;
   height: 600px;
   padding: 0;
   margin: 0;
-  background-color: #FF863A;
+  background-color: #343B40;
 }
 main{
-  position: absolute;
   font-family: 'Indie Flower', cursive;
-  left: 20%;
-  display: inline-block;
   box-sizing: border-box;
-  width: 80%;
+  width: 100%;
   height: 600px;
   margin: 0;
-  background-color: #FF863A;
+  padding: 1.5em;
+  background-color: #343B40;
+}
+.links{
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+}
+.deleteBtn-container{
+  background: pink;
+  border-top: .5px solid black;
+  border-bottom: .5px solid black;
+  margin-right: 0;
+  padding-right: 0;
+}
+.deleteBtn{
+  box-sizing: border-box;
+  background-color: pink;
+  border-right: 0;
+  width: 100%;
+  height: 100%;
+  transition: width 1.5s;
+}
+.deleteBtn:hover{
+  width: 100%;
 }
 .folders{
   box-sizing: none;
@@ -86,6 +99,12 @@ main{
 ul{
   padding: 0;
 }
+.noteContainer{
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2em;
+}
 li{
   margin-left: 0;
   list-style: none;
@@ -100,22 +119,39 @@ li{
 .note{
   color: #343B40;
   width: 100%;
-  height: 30px;
+  height: 5em;
   font-family: 'Indie Flower', cursive;
+  font-size: 24px;
+  text-decoration: underline;
   background-color: #FFF795;
   border-top: 1px solid #87FFEF;
   border-bottom: 1px solid #87FFEF;
   border-right: none;
   border-left: none;
+  border-top-left-radius: 20px;
 }
 
 .exactNote{
   color: #343B40;
   background-color: #FFF795;
-  height: 100%;
+  min-height: 100%;
+  padding: 2em;
+  font-size: 2em;
+
 }
-
-
+.addBtn{
+  height: 60px;
+  width: 60px;
+  font-size: 3em;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  background-color: rgb(82, 82, 255);
+}
+.content-container{
+  height: 400px;
+  width: 90%;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

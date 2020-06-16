@@ -4,7 +4,7 @@ import AppContext from '../AppContext'
 class AddFolder extends React.Component{
 	state = {
 		id: this.context.folders.length.toString(),
-		name: '',
+		folderName: '',
 		touched: false,
 		errorMessage: ''
 	}
@@ -12,13 +12,13 @@ class AddFolder extends React.Component{
 
 	handleChange= event =>{
 		this.setState({
-			name: event.target.value,
+			folderName: event.target.value,
 			touched: true})
 		this.validateName()
 		console.log(this.state.touched)
 	}
 	validateName = () =>{
-		if (this.state.name.length < 3){
+		if (this.state.folderName.length < 3){
 			this.setState({errorMessage: "you must input a valid name"})
 		} else {
 			this.setState({errorMessage: null})
@@ -26,12 +26,20 @@ class AddFolder extends React.Component{
 	}
 	handleSubmit=event=>{
 		event.preventDefault()
-		fetch('http://localhost:9090/folders', {
+		const newFolder = {
+			id: this.context.folders.length + 1,
+			folderName: this.state.folderName
+		}
+		fetch('http://localhost:8000/api/folders', {
 			method: 'POST',
-			body: JSON.stringify(this.state),
+			body: JSON.stringify(newFolder),
 			headers: {'content-type': 'application/json'}
 		})
-		.then(this.context.handleFolderSubmit())
+		this.context.handleFolderSubmit()
+		setTimeout(() =>{
+			this.props.history.push('/')
+		}, 3000)
+
 	}
 	render(){
 		return (

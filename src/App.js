@@ -20,12 +20,13 @@ class App extends React.Component {
 
 
   componentDidMount(){
-      fetch('http://localhost:9090/folders')
+      fetch('http://localhost:8000/api/folders')
         .then(response => response.json())
         .then(data => this.setState({folders: data}))
-      fetch('http://localhost:9090/notes')
+      fetch('http://localhost:8000/api/notes')
         .then(response => response.json())
         .then(data => this.setState({notes: data}))
+        .then(() => console.log(this.state.notes))
     }
 
   deleteNote = noteId => {
@@ -33,16 +34,16 @@ class App extends React.Component {
     this.setState({notes: newNotes})
   }
   handleFolderSubmit = event =>{
-    fetch('http://localhose:9090/folders')
-      .then(response => response.json())
-      .then(data => this.setState({folders: data}))
+    fetch('http://localhost:8000/api/folders')
+        .then(response => response.json())
+        .then(data => this.setState({folders: data}))
   }
   handleNoteSubmit = event => {
-      fetch('http://localhost:9090/notes')
+      fetch('http://localhost:8000/api/notes')
         .then(response => response.json())
         .then(data => this.setState({notes: data}))
   }
-
+  
   render(){
     const appValue = {
       notes: this.state.notes,
