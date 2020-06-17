@@ -32,7 +32,7 @@ class AddNotes extends React.Component{
 			body: JSON.stringify(newNote),
 			headers: {'content-type': 'application/json'}
 		})
-		.then(this.context.handleNoteSubmit())
+		.then(this.context.handleNoteSubmit(newNote))
 		this.props.history.push('/')
 		
 	}

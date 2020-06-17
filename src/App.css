@@ -137,6 +137,7 @@ li{
   min-height: 100%;
   padding: 2em;
   font-size: 2em;
+  border-radius: 10px;
 
 }
 .addBtn{
@@ -148,9 +149,31 @@ li{
   font-weight: 700;
   background-color: rgb(82, 82, 255);
 }
+.editBtn{
+  height: 60px;
+  width: 60px;
+  font-size: .5em;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  background-color: rgb(82, 82, 255);
+}
+.deleteNoteBtn{
+  height: 60px;
+  width: 60px;
+  font-size: .5em;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  background-color: rgb(221, 14, 14);
+}
 .content-container{
   height: 400px;
   width: 90%;
+}
+label{
+  width: 100%;
+  text-align: center;
 }
 @keyframes App-logo-spin {
   from {

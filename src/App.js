@@ -27,21 +27,36 @@ class App extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({notes: data}))
         .then(() => console.log(this.state.notes))
+      console.log('hi')
     }
-
+  deleteFolder = folderId =>{
+    const newFolders = this.state.folders.filter(folder => folder.id != folderId)
+    const newNotes = this.state.notes.filter(note => note.folderId != folderId)
+    this.setState({
+      folders: [...newFolders],
+      notes: [...newNotes]
+    }) 
+  }
   deleteNote = noteId => {
-    const newNotes= this.state.notes.filter(note => noteId !== note.id)
-    this.setState({notes: newNotes})
+    const newNotes= this.state.notes.filter(note => noteId != note.id)
+    this.setState({notes: [...newNotes]})
   }
-  handleFolderSubmit = event =>{
-    fetch('http://localhost:8000/api/folders')
-        .then(response => response.json())
-        .then(data => this.setState({folders: data}))
+  handleFolderSubmit = folder =>{
+    this.setState({folders: [...this.state.folders, folder]})
   }
-  handleNoteSubmit = event => {
-      fetch('http://localhost:8000/api/notes')
-        .then(response => response.json())
-        .then(data => this.setState({notes: data}))
+  handleNoteSubmit = note => {
+    this.setState({notes: [...this.state.notes, note]})
+  }
+
+  handleEdit= (noteId, updatedNote) =>{
+    const newNotes = [...this.state.notes]
+    newNotes.map(note =>{
+      if (note.id == noteId){
+        note.note_name = updatedNote.note_name
+        note.content = updatedNote.content
+      }
+    })
+    this.setState({notes: [...newNotes]})
   }
   
   render(){
@@ -49,8 +64,10 @@ class App extends React.Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.deleteNote,
+      deleteFolder: this.deleteFolder,
       handleNoteSubmit: this.handleNoteSubmit,
-      handleFolderSubmit: this.handleFolderSubmit
+      handleFolderSubmit: this.handleFolderSubmit,
+      handleEdit: this.handleEdit,
     }
     return (
       <AppContext.Provider value={appValue}>

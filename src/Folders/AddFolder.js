@@ -35,10 +35,8 @@ class AddFolder extends React.Component{
 			body: JSON.stringify(newFolder),
 			headers: {'content-type': 'application/json'}
 		})
-		this.context.handleFolderSubmit()
-		setTimeout(() =>{
-			this.props.history.push('/')
-		}, 3000)
+		this.context.handleFolderSubmit(newFolder)
+		this.props.history.push('/')
 
 	}
 	render(){

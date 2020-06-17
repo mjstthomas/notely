@@ -35,6 +35,7 @@ class ExactNote extends React.Component{
 			body: JSON.stringify(updatedNote),
 			headers: {'content-type': 'application/json'},
 		})
+		this.context.handleEdit(noteId, updatedNote)
 		setTimeout(this.props.history.push('/'), 3000)
 	}
 
@@ -46,14 +47,15 @@ class ExactNote extends React.Component{
       		headers: {'content-type': 'application/json'},
     		})
 			.catch(error => console.log(error))
-			setTimeout(this.props.history.push('/'), 3000)
+			this.context.deleteNote(noteId)
+			this.props.history.push('/')
 		}
 
-	componentWillMount(){
+	componentDidMount(){
 		this.fillState()
 	}
-
 	render(props){
+		
 		return(
 			<div className="exactNote">
 				<form onSubmit={this.handleSubmit}>
@@ -61,9 +63,9 @@ class ExactNote extends React.Component{
 					<input type="text" name="note_name" value={this.state.note_name} onChange={this.handleClick}/><br/>
 					<label htmlFor="content">Content:</label><br/>
 					<textarea className="content-container" name="content" value={this.state.content} onChange={this.handleClick}/><br/>
-					<button className="editBtn">Edit</button>
+					<button type='submit' className="editBtn">Edit</button>
+					<button className="deleteNoteBtn" onClick={this.handleDelete}>x</button>
 				</form>
-				<button onClick={this.handleDelete}>Delete</button>
 			</div>
 		)
 	}

@@ -16,7 +16,7 @@ class Main extends React.Component{
 					<ul className="noteContainer">
 						{newNotes}
 					</ul>
-					<Link to={`/folders/${this.props.match.params.folderId}/addNotes`}><button className="addBtn">+</button></Link>
+					{this.props.match.params.folderId && <Link to={`/folders/${this.props.match.params.folderId}/addNotes`}><button className="addBtn">+</button></Link>}
 				</div>
 			</NoteError>
 			)}

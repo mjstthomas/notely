@@ -13,7 +13,7 @@ class Folders extends React.Component{
       		headers: {'content-type': 'application/json'},
     		})
 			.catch(error => console.log(error))
-			this.context.handleFolderSubmit()
+			this.context.deleteFolder(id)
 			this.props.history.push('/')
 		}
 	render(){
