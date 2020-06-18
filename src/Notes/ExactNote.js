@@ -2,6 +2,7 @@ import React from 'react'
 import AppContext from '../AppContext'
 import { Link } from 'react-router-dom'
 import PropTypes, { exact } from 'prop-types'
+import API_URL from '../config'
 
 
 class ExactNote extends React.Component{
@@ -30,7 +31,7 @@ class ExactNote extends React.Component{
 		const updatedNote ={note_name, content}
 		const noteId = this.props.match.params.noteId
 
-		fetch(`http://localhost:8000/api/notes/${noteId}`, {
+		fetch(`https://glacial-hamlet-86888.herokuapp.com/api/notes/${noteId}`, {
 			method: 'POST',
 			body: JSON.stringify(updatedNote),
 			headers: {'content-type': 'application/json'},
@@ -42,7 +43,7 @@ class ExactNote extends React.Component{
 	handleDelete = event => {
 		event.preventDefault()
 		const noteId = this.props.match.params.noteId
-		fetch(`http://localhost:8000/api/notes/${noteId}`, {
+		fetch(`https://glacial-hamlet-86888.herokuapp.com/api/notes/${noteId}`, {
       		method: 'DELETE',
       		headers: {'content-type': 'application/json'},
     		})

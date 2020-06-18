@@ -11,6 +11,7 @@ import ExactNote from './Notes/ExactNote'
 import AddNotes from './Notes/AddNotes'
 import AddFolder from './Folders/AddFolder'
 import AppContext from './AppContext'
+import API_URL from './config'
 
 class App extends React.Component {
   state = {
@@ -20,10 +21,10 @@ class App extends React.Component {
 
 
   componentDidMount(){
-      fetch('http://localhost:8000/api/folders')
+      fetch(`https://glacial-hamlet-86888.herokuapp.com/api/folders`)
         .then(response => response.json())
         .then(data => this.setState({folders: data}))
-      fetch('http://localhost:8000/api/notes')
+      fetch(`https://glacial-hamlet-86888.herokuapp.com/api/notes`)
         .then(response => response.json())
         .then(data => this.setState({notes: data}))
         .then(() => console.log(this.state.notes))

@@ -1,5 +1,7 @@
 import React from 'react'
 import AppContext from '../AppContext'
+import {v4 as uuidv4} from 'uuid'
+import API_URL from '../config'
 
 class AddFolder extends React.Component{
 	state = {
@@ -27,10 +29,10 @@ class AddFolder extends React.Component{
 	handleSubmit=event=>{
 		event.preventDefault()
 		const newFolder = {
-			id: this.context.folders.length + 1,
+			id: uuidv4(),
 			folderName: this.state.folderName
 		}
-		fetch('http://localhost:8000/api/folders', {
+		fetch(`https://glacial-hamlet-86888.herokuapp.com/api/folders`, {
 			method: 'POST',
 			body: JSON.stringify(newFolder),
 			headers: {'content-type': 'application/json'}

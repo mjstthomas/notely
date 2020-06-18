@@ -3,12 +3,13 @@ import {Route, Link} from 'react-router-dom'
 import AppContext from '../AppContext'
 import FolderError from './FolderError'
 
+
 class Folders extends React.Component{
 	static contextType = AppContext
 	handleDelete = event => {
 		event.preventDefault()
 		const {id} = event.target
-		fetch(`http://localhost:8000/api/folders/${id}`, {
+		fetch(`https://glacial-hamlet-86888.herokuapp.com/${id}`, {
       		method: 'DELETE',
       		headers: {'content-type': 'application/json'},
     		})

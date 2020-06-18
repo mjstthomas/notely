@@ -1,6 +1,8 @@
 import React from 'react'
+import {v4 as uuidv4} from 'uuid'
 import { Link } from 'react-router-dom'
 import AppContext from '../AppContext'
+
 
 
 
@@ -27,11 +29,12 @@ class AddNotes extends React.Component{
 			noteName: this.state.noteName,
 			content: this.state.content
 		}
-		fetch('http://localhost:8000/api/notes', {
+		fetch(`https://glacial-hamlet-86888.herokuapp.com/api/notes`, {
 			method: 'POST',
 			body: JSON.stringify(newNote),
 			headers: {'content-type': 'application/json'}
 		})
+		.then(newNote.id = this.context.notes.length)
 		.then(this.context.handleNoteSubmit(newNote))
 		this.props.history.push('/')
 		
