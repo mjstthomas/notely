@@ -1,4 +1,4 @@
-
-const API_URL = "https://glacial-hamlet-86888.herokuapp.com/"
-
-export default API_URL
+export default {
+API_URL: process.env.REACT_APP_API_URL,
+API_KEY: process.env.REACT_APP_API_KEY
+}

@@ -11,7 +11,6 @@ import ExactNote from './Notes/ExactNote'
 import AddNotes from './Notes/AddNotes'
 import AddFolder from './Folders/AddFolder'
 import AppContext from './AppContext'
-import API_URL from './config'
 
 class App extends React.Component {
   state = {

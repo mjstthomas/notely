@@ -9,7 +9,8 @@ class Folders extends React.Component{
 	handleDelete = event => {
 		event.preventDefault()
 		const {id} = event.target
-		fetch(`https://glacial-hamlet-86888.herokuapp.com/${id}`, {
+		console.log(id)
+		fetch(`https://glacial-hamlet-86888.herokuapp.com/api/folders/${id}`, {
       		method: 'DELETE',
       		headers: {'content-type': 'application/json'},
     		})
