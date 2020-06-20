@@ -1,5 +1,6 @@
 .App {
   min-height: 100px;
+  width: 100%;
 }
 body{
   background-color: #343B40;
@@ -12,7 +13,7 @@ body{
 }
 
 header{
-  width: 100%;
+  box-sizing: border-box;
   height: 150px;
   text-decoration: none;
   text-align: center;
@@ -34,7 +35,7 @@ section{
   grid-template-columns: 1fr 3fr;
   position: relative;
   box-sizing: border-box;
-  width: 100%;
+  /* width: 100%; */
   min-height: 100px;
   margin: 0;
   padding: 0;
