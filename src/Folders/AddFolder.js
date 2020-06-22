@@ -32,15 +32,17 @@ class AddFolder extends React.Component{
 			id: uuidv4(),
 			folderName: this.state.folderName
 		}
+
 		fetch(`https://glacial-hamlet-86888.herokuapp.com/api/folders`, {
 			method: 'POST',
 			body: JSON.stringify(newFolder),
 			headers: {'content-type': 'application/json'}
 		})
+		
 		this.context.handleFolderSubmit(newFolder)
 		this.props.history.push('/')
-
 	}
+
 	render(){
 		return (
 			<div>

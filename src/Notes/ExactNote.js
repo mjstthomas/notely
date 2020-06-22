@@ -37,7 +37,7 @@ class ExactNote extends React.Component{
 			headers: {'content-type': 'application/json'},
 		})
 		this.context.handleEdit(noteId, updatedNote)
-		setTimeout(this.props.history.push('/'), 3000)
+		this.props.history.push('/')
 	}
 
 	handleDelete = event => {

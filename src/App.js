@@ -26,9 +26,8 @@ class App extends React.Component {
       fetch(`https://glacial-hamlet-86888.herokuapp.com/api/notes`)
         .then(response => response.json())
         .then(data => this.setState({notes: data}))
-        .then(() => console.log(this.state.notes))
-      console.log('hi')
     }
+
   deleteFolder = folderId =>{
     const newFolders = this.state.folders.filter(folder => folder.id != folderId)
     const newNotes = this.state.notes.filter(note => note.folderId != folderId)
@@ -37,13 +36,16 @@ class App extends React.Component {
       notes: [...newNotes]
     }) 
   }
+
   deleteNote = noteId => {
     const newNotes= this.state.notes.filter(note => noteId != note.id)
     this.setState({notes: [...newNotes]})
   }
+
   handleFolderSubmit = folder =>{
     this.setState({folders: [...this.state.folders, folder]})
   }
+
   handleNoteSubmit = note => {
     this.setState({notes: [...this.state.notes, note]})
   }

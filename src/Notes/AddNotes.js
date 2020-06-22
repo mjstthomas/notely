@@ -1,6 +1,4 @@
 import React from 'react'
-import {v4 as uuidv4} from 'uuid'
-import { Link } from 'react-router-dom'
 import AppContext from '../AppContext'
 
 
@@ -25,7 +23,7 @@ class AddNotes extends React.Component{
 	handleSubmit=event=>{
 		event.preventDefault()
 		const newNote = {
-			folderid: Number(this.state.folderid),
+			folderid: this.state.folderid,
 			noteName: this.state.noteName,
 			content: this.state.content
 		}
@@ -34,8 +32,9 @@ class AddNotes extends React.Component{
 			body: JSON.stringify(newNote),
 			headers: {'content-type': 'application/json'}
 		})
-		.then(newNote.id = this.context.notes.length)
-		.then(this.context.handleNoteSubmit(newNote))
+		newNote.id = this.context.notes.length + 1
+		this.context.handleNoteSubmit(newNote)
+		console.log(newNote)
 		this.props.history.push('/')
 		
 	}
