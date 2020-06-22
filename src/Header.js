@@ -5,7 +5,7 @@ export default function Header(){
 	return (
 		<div className="header">
 			<h1>
-			<Link to='/' >Noteful!!</Link>
+			<Link to='/' >Noteful</Link>
 			</h1>
 		</div>)
 }

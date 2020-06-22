@@ -18,17 +18,19 @@ header{
   text-decoration: none;
   text-align: center;
   padding: .5em;
-  color: white;
-  background: #343B40;
+  color: rgb(234, 241, 241);
+  background: #292f33;
   border-bottom: 10px solid white;
 }
 h1{
+  font-family: 'Open Sans', sans-serif;
   line-height: 1em;
   font-size: 4em;
+  font-weight: 700;
 }
 a{
   text-decoration: none;
-  color: white;
+  color: rgb(234, 241, 241);
 }
 section{
   display: grid;
@@ -48,7 +50,7 @@ nav{
   height: 600px;
   padding: 1em;
   margin: 0;
-  background-color: #343B40;
+  background-color: #444e55;
 }
 main{
   font-family: 'Indie Flower', cursive;
@@ -129,7 +131,7 @@ li{
   border-bottom: 1px solid #87FFEF;
   border-right: none;
   border-left: none;
-  border-top-left-radius: 20px;
+  border-radius: 20px;
 }
 
 .exactNote{
@@ -140,6 +142,10 @@ li{
   font-size: 2em;
   border-radius: 10px;
 
+}
+button{
+  border-image: none;
+  border-style: none;
 }
 .addBtn{
   height: 60px;
